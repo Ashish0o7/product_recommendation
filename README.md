@@ -1,1 +1,2 @@
-## The project will be updated soon, currently trying to make a small frontend showcase for it
+## For now only one file is uploaded that too without dataset
+## I'll upload the whole project in a little while, currently trying to build a demo for it 
