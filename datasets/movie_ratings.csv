@@ -1,0 +1,51 @@
+user_id,movie_id,rating,product_type
+1,1,5,Barbie doll
+1,2,4,Disney movie
+1,3,3,Marvel action figure
+1,4,2,DC comic book
+1,5,1,Transformers toy
+2,1,4,Barbie doll
+2,2,5,Disney movie
+2,3,3,Marvel action figure
+2,4,2,DC comic book
+2,5,1,Transformers toy
+3,1,3,Barbie doll
+3,2,4,Disney movie
+3,3,5,Marvel action figure
+3,4,2,DC comic book
+3,5,1,Transformers toy
+4,1,2,Barbie doll
+4,2,3,Disney movie
+4,3,4,Marvel action figure
+4,4,5,DC comic book
+4,5,1,Transformers toy
+5,1,1,Barbie doll
+5,2,2,Disney movie
+5,3,3,Marvel action figure
+5,4,4,DC comic book
+5,5,5,Transformers toy
+6,1,5,Barbie clothing
+6,2,4,Disney book
+6,3,3,Marvel t-shirt
+6,4,2,DC backpack
+6,5,1,Transformers toy
+7,1,4,Barbie clothing
+7,2,5,Disney book
+7,3,3,Marvel t-shirt
+7,4,2,DC backpack
+7,5,1,Transformers toy
+8,1,3,Barbie clothing
+8,2,4,Disney book
+8,3,5,Marvel t-shirt
+8,4,2,DC backpack
+8,5,1,Transformers toy
+9,1,2,Barbie clothing
+9,2,3,Disney book
+9,3,4,Marvel t-shirt
+9,4,5,DC backpack
+9,5,1,Transformers toy
+10,1,1,Barbie clothing
+10,2,2,Disney book
+10,3,3,Marvel t-shirt
+10,4,4,DC backpack
+10,5,5,Transformers toy
