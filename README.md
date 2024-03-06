@@ -1,10 +1,12 @@
 ### 1.) pull docker image
 ```bash
 docker pull redakb/recommeder
+```
 
 ### 2.) run it
 ```bash
 docker run redakb/recommender
+```
 
 
 ### Main Page
