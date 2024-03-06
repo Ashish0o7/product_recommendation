@@ -1,0 +1,82 @@
+{% extends 'base.html' %}
+
+{% block title %}
+    Movie Recommend
+{% endblock %}
+
+{% block extra_css %}
+<style>
+    /* Custom CSS for movie cards */
+    .card {
+        border: none;
+        border-radius: 15px;
+        box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+        transition: transform 0.3s ease;
+    }
+
+    .card:hover {
+        transform: scale(1.05);
+    }
+
+    .card img {
+        max-width: 100%;
+        height: auto;
+        border-top-left-radius: 15px;
+        border-top-right-radius: 15px;
+    }
+
+    .card-body {
+        padding: 20px;
+    }
+
+    .card-title {
+        font-size: 1.2rem;
+        margin-bottom: 0;
+    }
+</style>
+{% endblock %}
+
+{% block content %}
+<div class="container" style="margin-top: 80px">
+    <div class="my-5">
+        <form method="post" action="{% url 'movie_recommender' %}" class="text-center">
+            {% csrf_token %}
+            <div class="form-group">
+                <label for="selected_movie">Select a movie:</label>
+                <select class="form-control" name="selected_movie" id="selected_movie">
+                    {% for movie in movies %}
+                        <option value="{{ movie }}">{{ movie }}</option>
+                    {% endfor %}
+                </select>
+            </div>
+            <button type="submit" class="btn btn-primary">Recommend</button>
+        </form>
+    </div>
+
+    {% if selected_movie %}
+        <div class="my-5">
+            <h3 class="text-center mb-4">Recommended Movies:</h3>
+            <div class="row">
+                <div class="col-md-3">
+                    <div class="card mb-4">
+                        <img src="{{ poster_url }}" class="card-img-top" alt="Movie Poster">
+                        <div class="card-body">
+                            <h5 class="card-title">Selected Movie: {{ selected_movie }}</h5>
+                        </div>
+                    </div>
+                </div>
+                {% for recommended_movie, poster_url in recommended_data %}
+                    <div class="col-md-3">
+                        <div class="card mb-4">
+                            <img src="{{ poster_url }}" class="card-img-top" alt="Movie Poster">
+                            <div class="card-body">
+                                <h5 class="card-title">{{ recommended_movie }}</h5>
+                            </div>
+                        </div>
+                    </div>
+                {% endfor %}
+            </div>
+        </div>
+    {% endif %}
+</div>
+{% endblock %}

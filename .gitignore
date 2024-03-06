@@ -1,0 +1,9 @@
+.venv/
+mainApp/static/images/
+mainApp/static/uploads/
+mainapp1/settings.py
+/static
+/uploads
+mainApp/embeddings.pkl
+mainApp/similarity.pkl
+

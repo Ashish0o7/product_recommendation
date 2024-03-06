@@ -1,0 +1,131 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block extra_css %}
+<style>
+    /* Custom CSS for home page */
+    .welcome-container {
+        background-color: #f8f9fa;
+        border-radius: 10px;
+        padding: 20px;
+        box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+        text-align: center;
+        margin-top: 50px;
+    }
+
+    .welcome-message {
+        font-size: 24px;
+        color: #333;
+        margin-bottom: 20px;
+    }
+
+    .user-name {
+        font-weight: bold;
+        color: #007bff;
+    }
+
+    /* Animation */
+    @keyframes slideInFromLeft {
+        0% {
+            transform: translateX(-100%);
+        }
+        100% {
+            transform: translateX(0);
+        }
+    }
+
+    .slide-in {
+        animation: 0.5s ease-out 0s 1 slideInFromLeft;
+    }
+
+    /* Additional Styles */
+    .features-container {
+        margin-top: 50px;
+    }
+
+    .feature-box {
+        background-color: #ffffff;
+        border-radius: 10px;
+        padding: 20px;
+        margin-bottom: 20px;
+        box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+        transition: transform 0.3s ease;
+    }
+
+    .feature-box:hover {
+        transform: translateY(-5px);
+    }
+
+    .feature-icon {
+        font-size: 36px;
+        margin-bottom: 10px;
+    }
+
+    .feature-title {
+        font-size: 20px;
+        font-weight: bold;
+        color: #333;
+        margin-bottom: 10px;
+    }
+
+    .feature-description {
+        color: #666;
+    }
+</style>
+{% endblock %}
+
+{% block content %}
+<div class="container">
+    <div class="row">
+        <div class="col-md-8 offset-md-2 welcome-container slide-in">
+            {% if user.is_authenticated %}
+                <div class="welcome-message">
+                    <p>Welcome, <span class="user-name">{{ user.first_name }}</span>!</p>
+                    <p>You're now part of our awesome community.</p>
+                </div>
+            {% else %}
+                <div class="welcome-message">
+                    <p>Welcome to Our Website!</p>
+                    <p>Please <a href="{% url 'social:begin' 'google-oauth2' %}">Login With Google</a> to access all features.</p>
+                </div>
+            {% endif %}
+        </div>
+    </div>
+
+    <div class="row features-container">
+    <div class="col-md-4">
+        <a href="{% url 'movie_recommender' %}">
+            <div class="feature-box">
+                <div class="feature-icon">
+                    <i class="fas fa-film"></i>
+                </div>
+                <div class="feature-title">Movie Recommender</div>
+                <div class="feature-description">Discover similar movies based on your preferences.</div>
+            </div>
+        </a>
+    </div>
+    <div class="col-md-4">
+        <a href="{% url 'fashion_recommender' %}">
+            <div class="feature-box">
+                <div class="feature-icon">
+                    <i class="fas fa-shopping-bag"></i>
+                </div>
+                <div class="feature-title">Product Recommender</div>
+                <div class="feature-description">Find similar items based on uploaded images.</div>
+            </div>
+        </a>
+    </div>
+    <div class="col-md-4">
+        <a href="{% url 'admin:index' %}">
+            <div class="feature-box">
+                <div class="feature-icon">
+                    <i class="fas fa-cogs"></i>
+                </div>
+                <div class="feature-title">Admin Panel</div>
+                <div class="feature-description">Manage website settings and content.</div>
+            </div>
+        </a>
+    </div>
+</div>
+
+{% endblock %}

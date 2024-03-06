@@ -1,0 +1,121 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}
+    Product Recommend
+{% endblock %}
+
+{% block extra_css %}
+<style>
+    /* Custom CSS for uploaded image and recommended cards */
+    .uploaded-image {
+        margin-top: 20px;
+        padding: 20px;
+        border: 1px solid #ddd;
+        border-radius: 10px;
+        background-color: #f8f9fa;
+    }
+
+    .small-image {
+        max-width: 100px; /* Adjust this value to your desired width */
+        height: auto; /* Maintain aspect ratio */
+    }
+
+    .card {
+        border: none;
+        border-radius: 15px;
+        box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+        transition: transform 0.3s ease;
+        margin-bottom: 20px;
+    }
+
+    .card:hover {
+        transform: scale(1.05);
+    }
+
+    .card-body {
+        padding: 20px;
+    }
+
+    .card-title {
+        font-size: 1.2rem;
+        margin-bottom: 0;
+    }
+
+    .additional-info {
+        display: none; /* Hide additional info by default */
+    }
+
+    .show {
+        display: block !important; /* Override display property to show content */
+    }
+</style>
+{% endblock %}
+
+{% block content %}
+<div class="container" style="margin-top: 80px">
+    <h1 class="mb-4"></h1>
+    <form method="post" enctype="multipart/form-data">
+        {% csrf_token %}
+        <div class="mb-3">
+            <label for="uploadedFile" class="form-label">Choose Image</label>
+            <input class="form-control" type="file" id="uploadedFile" name="uploaded_file">
+        </div>
+
+        <button type="submit" class="btn btn-primary">Upload</button>
+    </form>
+
+    <!-- Display uploaded image -->
+    {% if uploaded_file_url %}
+        <div class="uploaded-image">
+            <h2 class="mb-3">Uploaded Image</h2>
+            <img src="{% static 'uploads/'|add:uploaded_file_url %}" class="img-fluid mb-3" alt="Uploaded Image">
+        </div>
+    {% endif %}
+
+    <hr>
+    {% if recommended_details %}
+        <h2 class="mt-4">Recommended Images</h2>
+        <div class="row mt-3">
+            {% for detail in recommended_details %}
+                <div class="col-md-3 mb-4">
+                    <div class="card">
+                        <img class="small-image" src="{% static detail.image_path %}" class="card-img-top rounded-top"
+                             alt="Recommended Image">
+                        <div class="card-body">
+                            <h5 class="card-title">ID: {{ detail.id }}</h5>
+                            <p class="card-text">Name: {{ detail.product_display_name }}</p>
+                            <!-- More Info toggle button -->
+                            <button class="btn btn-primary toggle-info" data-target="#info{{ detail.id }}">
+                                More Info
+                            </button>
+                            <!-- Additional Information -->
+                            <div id="info{{ detail.id }}" class="additional-info">
+                                <p class="card-text">Gender: {{ detail.gender }}</p>
+                                <p class="card-text">Master Category: {{ detail.master_category }}</p>
+                                <p class="card-text">Sub Category: {{ detail.sub_category }}</p>
+                                <p class="card-text">Article Type: {{ detail.article_type }}</p>
+                                <p class="card-text">Base Colour: {{ detail.base_colour }}</p>
+                                <p class="card-text">Season: {{ detail.season }}</p>
+                                <p class="card-text">Year: {{ detail.year }}</p>
+                                <p class="card-text">Usage: {{ detail.usage }}</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            {% endfor %}
+        </div>
+    {% endif %}
+</div>
+
+<script>
+    // JavaScript to toggle the visibility of additional information
+    document.querySelectorAll('.toggle-info').forEach(button => {
+        button.addEventListener('click', () => {
+            const targetId = button.getAttribute('data-target');
+            const info = document.querySelector(targetId);
+            info.classList.toggle('show');
+        });
+    });
+</script>
+{% endblock %}
