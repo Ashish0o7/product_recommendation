@@ -16,5 +16,5 @@ docker run redakb/recommender
 
 
 ### Movie Recommend
-![Movies](https://i.ibb.co/NY4qY4n/Screenshot-2024-03-07-at-1-39-21-AM.png)
+![Movies](https://iili.io/JV0AzR2.png)
 
